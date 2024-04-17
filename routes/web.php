@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PelatihanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +23,14 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/login', [AuthController::class, 'showLoginForm']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/pelatihan', [PelatihanController::class, 'index'])->name('pelatihan.index');
+    Route::get('/pelatihan/create', [PelatihanController::class, 'create'])->name('pelatihan.create');
+    Route::post('/pelatihan', [PelatihanController::class, 'store'])->name('pelatihan.store');
+    Route::get('/pelatihan/{pelatihan}', [PelatihanController::class, 'show'])->name('pelatihan.show');
+    Route::get('/pelatihan/{pelatihan}/edit', [PelatihanController::class, 'edit'])->name('pelatihan.edit');
+    Route::put('/pelatihan/{pelatihan}', [PelatihanController::class, 'update'])->name('pelatihan.update');
+    Route::delete('/pelatihan/{pelatihan}', [PelatihanController::class, 'destroy'])->name('pelatihan.destroy');
+});
