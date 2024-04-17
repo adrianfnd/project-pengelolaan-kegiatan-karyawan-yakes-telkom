@@ -29,8 +29,8 @@
                     @csrf
                     <div class="form-group">
                         <label for="nik">NIK:</label>
-                        <input type="number" class="form-control" id="nik" name="nik">
-                    </div>
+                        <input type="number" class="form-control" id="nik" name="nik" maxlength="16">
+                    </div>                    
                     <div class="form-group">
                         <label for="nama">Nama:</label>
                         <input type="text" class="form-control" id="nama" name="nama">
@@ -81,8 +81,9 @@
                         <input type="text" class="form-control" id="keterangan" name="keterangan">
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitModal">Submit</button>
-                    </div>
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#backModal">Kembali</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitModal">Simpan</button>
+                    </div>                    
                 </form>
             </div>
         </div>
@@ -95,7 +96,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="submitModalLabel">Konfirmasi Submit</h5>
+                    <h5 class="modal-title" id="submitModalLabel">Konfirmasi Simpan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -105,7 +106,28 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" form="createForm" class="btn btn-primary">Submit</button>
+                    <button type="submit" form="createForm" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back Modal -->
+    <div class="modal fade" id="backModal" tabindex="-1" role="dialog" aria-labelledby="backModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="backModalLabel">Konfirmasi Kembali</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin kembali tanpa menyimpan perubahan?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <a href="{{ route('pelatihan.index') }}" class="btn btn-primary">Kembali</a>
                 </div>
             </div>
         </div>

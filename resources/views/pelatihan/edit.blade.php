@@ -30,7 +30,7 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="nik">NIK:</label>
-                        <input type="number" class="form-control" id="nik" name="nik" value="{{ $pelatihan->nik }}">
+                        <input type="number" class="form-control" id="nik" name="nik" maxlength="16" value="{{ $pelatihan->nik }}">
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama:</label>
@@ -81,7 +81,7 @@
                     </div>
                     <div class="form-group">
                         <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#backModal">Kembali</a>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitModal">Submit</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitModal">Edit</button>
                     </div>
                 </form>
             </div>
@@ -95,7 +95,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="submitModalLabel">Konfirmasi Submit</h5>
+                    <h5 class="modal-title" id="submitModalLabel">Konfirmasi Edit</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" form="editForm" class="btn btn-primary">Submit</button>
+                    <button type="submit" form="editForm" class="btn btn-primary">Edit</button>
                 </div>
             </div>
         </div>
