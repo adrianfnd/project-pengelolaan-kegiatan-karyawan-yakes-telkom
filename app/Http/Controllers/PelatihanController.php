@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pelatihan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PelatihanController extends Controller
 {
@@ -22,17 +23,17 @@ class PelatihanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'NIK' => 'required',
-            'Nama' => 'required',
-            'Nama_Pelatihan' => 'required',
-            'Kompetensi_Yang_Ditingkatkan' => 'required',
-            'Jumlah_Hari' => 'required|numeric',
-            'Penyelenggara' => 'required',
-            'Tgl_Mulai' => 'required|date',
-            'Tgl_Selesai' => 'required|date',
-            'Jenis_Pelatihan' => 'required|in:Internal,Publik',
-            'EVIDEN' => 'required|in:Daftar hadir,Sertifikat,Notadinas',
-            'Keterangan' => 'nullable',
+            'nik' => 'required|numeric',
+            'nama' => 'required',
+            'nama_pelatihan' => 'required',
+            'kompetensi_yang_ditingkatkan' => 'required',
+            'jumlah_hari' => 'required|numeric',
+            'penyelenggara' => 'required',
+            'tgl_mulai' => 'required|date',
+            'tgl_selesai' => 'required|date',
+            'jenis_pelatihan' => 'required|in:Internal,Publik',
+            'eviden' => 'required|in:Daftar hadir,Sertifikat,Notadinas',
+            'keterangan' => 'nullable',
         ]);
 
         Pelatihan::create($request->all());
@@ -53,17 +54,17 @@ class PelatihanController extends Controller
     public function update(Request $request, Pelatihan $pelatihan)
     {
         $request->validate([
-            'NIK' => 'required',
-            'Nama' => 'required',
-            'Nama_Pelatihan' => 'required',
-            'Kompetensi_Yang_Ditingkatkan' => 'required',
-            'Jumlah_Hari' => 'required|numeric',
-            'Penyelenggara' => 'required',
-            'Tgl_Mulai' => 'required|date',
-            'Tgl_Selesai' => 'required|date',
-            'Jenis_Pelatihan' => 'required|in:Internal,Publik',
-            'EVIDEN' => 'required|in:Daftar hadir,Sertifikat,Notadinas',
-            'Keterangan' => 'nullable',
+            'nik' => 'required|numeric',
+            'nama' => 'required',
+            'nama_pelatihan' => 'required',
+            'kompetensi_yang_ditingkatkan' => 'required',
+            'jumlah_hari' => 'required|numeric',
+            'penyelenggara' => 'required',
+            'tgl_mulai' => 'required|date',
+            'tgl_selesai' => 'required|date',
+            'jenis_pelatihan' => 'required|in:Internal,Publik',
+            'eviden' => 'required|in:Daftar hadir,Sertifikat,Notadinas',
+            'keterangan' => 'nullable',
         ]);
 
         $pelatihan->update($request->all());
@@ -77,5 +78,55 @@ class PelatihanController extends Controller
 
         return redirect()->route('pelatihan.index')->with('success', 'Pelatihan berhasil dihapus');
     }
+
+    public function exportExcel(Request $request)
+    {
+        $request->validate([
+            'tgl_dari' => 'required|date',
+            'tgl_sampai' => 'required|date|after_or_equal:tgl_dari',
+        ]);
+    
+        $tgl_dari = $request->tgl_dari;
+        $tgl_sampai = $request->tgl_sampai;
+
+        $trainings = Pelatihan::whereBetween('created_at', [$tgl_dari, $tgl_sampai])
+                                ->orderBy('created_at')
+                                ->get();
+
+        $currentDateTime = now()->format('Y-m-d_H-i-s');
+        $csvFileName = 'trainings_' . $currentDateTime . '.csv';
+        $csvFile = fopen('php://temp', 'w');    
+        
+        $header = ['No', 'NIK', 'Nama', 'Nama Pelatihan', 'Kompetensi yang Ditingkatkan', 'Jumlah Hari', 'Penyelenggara', 'Tanggal Mulai', 'Tanggal Selesai', 'Jenis Pelatihan', 'Eviden', 'Keterangan'];
+        fputcsv($csvFile, $header, ';');
+    
+        $counter = 1;
+        foreach ($trainings as $training) {
+            $rowData = [
+                $counter++,
+                $training->nik,
+                $training->nama,
+                $training->nama_pelatihan,
+                $training->kompetensi_yang_ditingkatkan,
+                $training->jumlah_hari,
+                $training->penyelenggara,
+                $training->tgl_mulai->format('Y-m-d'),
+                $training->tgl_selesai->format('Y-m-d'),
+                $training->jenis_pelatihan,
+                $training->eviden,
+                $training->keterangan,
+            ];
+            fputcsv($csvFile, $rowData, ';');
+        }
+        
+        rewind($csvFile);
+        $csvData = stream_get_contents($csvFile);
+        fclose($csvFile);
+
+        return response()->streamDownload(function () use ($csvData) {
+            echo $csvData;
+        }, $csvFileName);
+    }
+    
 }
 
