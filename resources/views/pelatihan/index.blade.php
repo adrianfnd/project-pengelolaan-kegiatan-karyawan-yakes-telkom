@@ -1,3 +1,7 @@
+@php
+    $roles = auth()->user()->roles;
+@endphp
+
 @extends('layouts.header')
 
 @section('content')
@@ -15,7 +19,9 @@
             <div class="card-body">
                 <div class="d-flex justify-content-end mb-3">
                     <a href="{{ route('pelatihan.create') }}" class="btn btn-success mr-2">Tambah Pelatihan</a>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exportExcelModal">Export Excel</button>
+                    @if($roles == 1)
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exportExcelModal">Export Excel</button>
+                    @endif
                 </div>
                 <div class="table-responsive">
                     @if (session('success'))
@@ -44,7 +50,7 @@
                                 <th>Jenis Pelatihan</th>
                                 <th>Eviden</th>
                                 <th>Keterangan</th>
-                                <th>Aksi</th>
+                                <th><Center>Aksi</Center></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,15 +70,21 @@
                                 <td>{{ $pelatihan->keterangan }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <a href="{{ route('pelatihan.edit', $pelatihan->id) }}" class="btn btn-primary btn-sm btn-circle mr-1">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="{{ route('pelatihan.show', $pelatihan->id) }}" class="btn btn-info btn-sm btn-circle mr-1">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-danger btn-sm btn-circle" data-toggle="modal" data-target="#deleteModal{{ $pelatihan->id }}">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                        @if($roles == 1)
+                                            <a href="{{ route('pelatihan.edit', $pelatihan->id) }}" class="btn btn-primary btn-sm btn-circle mr-1">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{{ route('pelatihan.show', $pelatihan->id) }}" class="btn btn-info btn-sm btn-circle mr-1">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-danger btn-sm btn-circle" data-toggle="modal" data-target="#deleteModal{{ $pelatihan->id }}">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        @else
+                                            <a href="{{ route('pelatihan.show', $pelatihan->id) }}" class="btn btn-info btn-sm btn-circle mr-1">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                        @endif
                                     </div>
                                 </td>                                                                        
                             </tr>
@@ -102,7 +114,9 @@
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal
+
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

@@ -94,7 +94,7 @@ class PelatihanController extends Controller
                                 ->get();
 
         $currentDateTime = now()->format('Y-m-d_H-i-s');
-        $csvFileName = 'trainings_' . $currentDateTime . '.csv';
+        $csvFileName = 'data_pelatihan_' . $currentDateTime . '.csv';
         $csvFile = fopen('php://temp', 'w');    
         
         $header = ['No', 'NIK', 'Nama', 'Nama Pelatihan', 'Kompetensi yang Ditingkatkan', 'Jumlah Hari', 'Penyelenggara', 'Tanggal Mulai', 'Tanggal Selesai', 'Jenis Pelatihan', 'Eviden', 'Keterangan'];
