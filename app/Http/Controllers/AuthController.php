@@ -9,6 +9,11 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+    public function redirect()
+    {
+        return redirect('/dashboard');
+    }
+
     public function showRegisterForm()
     {
         return view('register');

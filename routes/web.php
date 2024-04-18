@@ -18,6 +18,7 @@ use App\Http\Controllers\PelatihanController;
 */
 
 // Auth Route
+Route::get('/', [AuthController::class, 'redirect']);
 Route::get('/register', [AuthController::class, 'showRegisterForm']);
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/login', [AuthController::class, 'showLoginForm']);
