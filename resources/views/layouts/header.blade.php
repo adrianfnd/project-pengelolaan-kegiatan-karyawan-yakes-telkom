@@ -20,6 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <link rel="icon" type="image/png" href="img/icon.png">
+
 </head>
 
 <body id="page-top">

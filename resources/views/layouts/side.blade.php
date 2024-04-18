@@ -1,18 +1,18 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-cog"></i>
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+        <div class="sidebar-brand-icon" style="position: relative;">
+            <img src="img/icon.png" alt="Icon" width="55" height="55" style="filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); border-radius: 10%;">
         </div>        
-        <div class="sidebar-brand-text mx-3">Pengelolaan Kegiatan</div>
+        <div class="sidebar-brand-text mx-2">Pengelolaan Kegiatan</div>
     </a>
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item {{ Request::is('dashboard*') ? 'active' : '' }}"">
+    <li class="nav-item {{ Request::is('dashboard*') ? 'active' : '' }}">
         <a class="nav-link" href="/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
