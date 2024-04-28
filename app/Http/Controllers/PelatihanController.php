@@ -81,16 +81,10 @@ class PelatihanController extends Controller
 
     public function exportExcel(Request $request)
     {
-        $request->validate([
-            'tgl_dari' => 'required|date',
-            'tgl_sampai' => 'required|date|after_or_equal:tgl_dari',
-        ]);
-    
         $tgl_dari = $request->tgl_dari;
         $tgl_sampai = $request->tgl_sampai;
 
-        $trainings = Pelatihan::whereBetween('created_at', [$tgl_dari, $tgl_sampai])
-                                ->orderBy('created_at')
+        $trainings = Pelatihan::orderBy('created_at')
                                 ->get();
 
         $currentDateTime = now()->format('Y-m-d_H-i-s');

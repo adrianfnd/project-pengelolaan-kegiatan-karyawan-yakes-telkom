@@ -94,33 +94,25 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exportExcelModalLabel">Export Excel</h5>
+                                            <h5 class="modal-title" id="exportExcelModalLabel">Konfirmasi Export Excel</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('pelatihan.export.excel') }}" method="POST">
-                                                @csrf
-                                                <div class="form-group">
-                                                    <label for="tgl_dari">Tanggal Dari:</label>
-                                                    <input type="date" class="form-control" id="tgl_dari" name="tgl_dari">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tgl_sampai">Tanggal Sampai:</label>
-                                                    <input type="date" class="form-control" id="tgl_sampai" name="tgl_sampai">
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Export</button>
-                                            </form>
+                                            <p>Apakah Anda ingin mengekspor data ke dalam format Excel?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal
-
-                                            </button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                            <form action="{{ route('pelatihan.export.excel') }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary">Export</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
 
                             <!-- Delete Modal -->
                             <div class="modal fade" id="deleteModal{{ $pelatihan->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
