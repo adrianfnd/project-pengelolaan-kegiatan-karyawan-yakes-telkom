@@ -67,7 +67,7 @@
                         <a href="{{ route('pelatihan.create') }}" class="btn btn-success mr-2">Tambah Pelatihan</a>
                         @if ($roles == 1)
                             <button type="button" class="btn btn-success" data-toggle="modal"
-                                data-target="#exportCSVModal">Export CSV</button>
+                                data-target="#exportExcelModal">Export Excel</button>
                         @endif
                     </div>
                 </div>
@@ -146,20 +146,21 @@
                                     </td>
                                 </tr>
 
-                                <!-- Export CSV Modal -->
-                                <div class="modal fade" id="exportCSVModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="exportCSVModalLabel" aria-hidden="true">
+                                <!-- Export Excel Modal -->
+                                <div class="modal fade" id="exportExcelModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="exportExcelModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exportCSVModalLabel">Konfirmasi Export CSV</h5>
+                                                <h5 class="modal-title" id="exportExcelModalLabel">Konfirmasi Export Excel
+                                                </h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Apakah Anda ingin mengekspor data ke dalam format CSV?</p>
+                                                <p>Apakah Anda ingin mengekspor data ke dalam format Excel?</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"

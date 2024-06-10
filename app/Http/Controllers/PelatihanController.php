@@ -6,6 +6,8 @@ use App\Models\Pelatihan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
+use App\Exports\PelatihanExport;
+
 class PelatihanController extends Controller
 {
     public function index(Request $request)
@@ -88,50 +90,15 @@ class PelatihanController extends Controller
 
         return redirect()->route('pelatihan.index')->with('success', 'Pelatihan berhasil dihapus');
     }
-
-    public function exportExcel(Request $request)
+    
+    public function exportExcel()
     {
-        $tgl_dari = $request->tgl_dari;
-        $tgl_sampai = $request->tgl_sampai;
-
-        $trainings = Pelatihan::orderBy('created_at')
-                                ->get();
+        $trainings = Pelatihan::orderBy('created_at')->get();
 
         $currentDateTime = now()->format('Y-m-d_H-i-s');
-        $csvFileName = 'data_pelatihan_' . $currentDateTime . '.csv';
-        $csvFile = fopen('php://temp', 'w');    
-        
-        $header = ['No', 'NIK', 'Nama', 'Nama Pelatihan', 'Kompetensi yang Ditingkatkan', 'Jumlah Hari', 'Penyelenggara', 'Tanggal Mulai', 'Tanggal Selesai', 'Jenis Pelatihan', 'Eviden', 'Keterangan','Atasan Nama'];
-        fputcsv($csvFile, $header, ';');
-    
-        $counter = 1;
-        foreach ($trainings as $training) {
-            $rowData = [
-                $counter++,
-                $training->nik,
-                $training->nama,
-                $training->nama_pelatihan,
-                $training->kompetensi_yang_ditingkatkan,
-                $training->jumlah_hari,
-                $training->penyelenggara,
-                $training->tgl_mulai->format('Y-m-d'),
-                $training->tgl_selesai->format('Y-m-d'),
-                $training->jenis_pelatihan,
-                $training->eviden,
-                $training->keterangan,
-                $training->nama_atasan
-            ];
-            fputcsv($csvFile, $rowData, ';');
-        }
-        
-        rewind($csvFile);
-        $csvData = stream_get_contents($csvFile);
-        fclose($csvFile);
+        $fileName = 'data_pelatihan_' . $currentDateTime . '.xlsx';
 
-        return response()->streamDownload(function () use ($csvData) {
-            echo $csvData;
-        }, $csvFileName);
+        return Excel::download(new PelatihanExport($trainings), $fileName);
     }
-    
 }
 
