@@ -26,6 +26,7 @@ class CreatePelatihanTable extends Migration
             $table->enum('jenis_pelatihan', ['Internal', 'Publik']);
             $table->enum('eviden', ['Daftar hadir', 'Sertifikat', 'Notadinas']);
             $table->text('keterangan')->nullable();
+            $table->string('nama_atasan');
             $table->timestamps();
         });
     }

@@ -33,6 +33,7 @@ class Pelatihan extends Model
         'jenis_pelatihan',
         'eviden',
         'keterangan',
+        'nama_atasan',
     ];
 
     /**

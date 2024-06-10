@@ -14,7 +14,7 @@
             </div>
             <div class="card-body">
                 @if (session('success'))
-                    <div class="alert alert-success" >
+                    <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
                 @endif
@@ -30,58 +30,79 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="nik">NIK:</label>
-                        <input type="number" class="form-control" id="nik" name="nik" maxlength="16" value="{{ $pelatihan->nik }}">
+                        <input type="number" class="form-control" id="nik" name="nik" maxlength="16"
+                            value="{{ $pelatihan->nik }}">
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama:</label>
-                        <input type="text" class="form-control" id="nama" name="nama" value="{{ $pelatihan->nama }}">
+                        <input type="text" class="form-control" id="nama" name="nama"
+                            value="{{ $pelatihan->nama }}">
                     </div>
                     <div class="form-group">
                         <label for="nama_pelatihan">Nama Pelatihan:</label>
-                        <input type="text" class="form-control" id="nama_pelatihan" name="nama_pelatihan" value="{{ $pelatihan->nama_pelatihan }}">
+                        <input type="text" class="form-control" id="nama_pelatihan" name="nama_pelatihan"
+                            value="{{ $pelatihan->nama_pelatihan }}">
                     </div>
                     <div class="form-group">
                         <label for="kompetensi_yang_ditingkatkan">Kompetensi Yang Ditingkatkan:</label>
-                        <input type="text" class="form-control" id="kompetensi_yang_ditingkatkan" name="kompetensi_yang_ditingkatkan" value="{{ $pelatihan->kompetensi_yang_ditingkatkan }}">
+                        <input type="text" class="form-control" id="kompetensi_yang_ditingkatkan"
+                            name="kompetensi_yang_ditingkatkan" value="{{ $pelatihan->kompetensi_yang_ditingkatkan }}">
                     </div>
                     <div class="form-group">
                         <label for="jumlah_hari">Jumlah Hari:</label>
-                        <input type="text" class="form-control" id="jumlah_hari" name="jumlah_hari" value="{{ $pelatihan->jumlah_hari }}">
+                        <input type="text" class="form-control" id="jumlah_hari" name="jumlah_hari"
+                            value="{{ $pelatihan->jumlah_hari }}">
                     </div>
                     <div class="form-group">
                         <label for="penyelenggara">Penyelenggara:</label>
-                        <input type="text" class="form-control" id="penyelenggara" name="penyelenggara" value="{{ $pelatihan->penyelenggara }}">
+                        <input type="text" class="form-control" id="penyelenggara" name="penyelenggara"
+                            value="{{ $pelatihan->penyelenggara }}">
                     </div>
                     <div class="form-group">
                         <label for="tgl_mulai">Tanggal Mulai:</label>
-                        <input type="date" class="form-control" id="tgl_mulai" name="tgl_mulai" value="{{ date('Y-m-d', strtotime($pelatihan->tgl_mulai)) }}">
+                        <input type="date" class="form-control" id="tgl_mulai" name="tgl_mulai"
+                            value="{{ date('Y-m-d', strtotime($pelatihan->tgl_mulai)) }}">
                     </div>
                     <div class="form-group">
                         <label for="tgl_selesai">Tanggal Selesai:</label>
-                        <input type="date" class="form-control" id="tgl_selesai" name="tgl_selesai" value="{{ date('Y-m-d', strtotime($pelatihan->tgl_selesai)) }}">
-                    </div>                    
+                        <input type="date" class="form-control" id="tgl_selesai" name="tgl_selesai"
+                            value="{{ date('Y-m-d', strtotime($pelatihan->tgl_selesai)) }}">
+                    </div>
                     <div class="form-group">
                         <label for="jenis_pelatihan">Jenis Pelatihan:</label>
                         <select class="form-control" id="jenis_pelatihan" name="jenis_pelatihan">
-                            <option value="Internal" {{ $pelatihan->jenis_pelatihan == 'Internal' ? 'selected' : '' }}>Internal</option>
-                            <option value="Publik" {{ $pelatihan->jenis_pelatihan == 'Publik' ? 'selected' : '' }}>Publik</option>
+                            <option value="Internal" {{ $pelatihan->jenis_pelatihan == 'Internal' ? 'selected' : '' }}>
+                                Internal</option>
+                            <option value="Publik" {{ $pelatihan->jenis_pelatihan == 'Publik' ? 'selected' : '' }}>Publik
+                            </option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="eviden">Eviden:</label>
                         <select class="form-control" id="eviden" name="eviden">
-                            <option value="Daftar hadir" {{ $pelatihan->eviden == 'Daftar hadir' ? 'selected' : '' }}>Daftar hadir</option>
-                            <option value="Sertifikat" {{ $pelatihan->eviden == 'Sertifikat' ? 'selected' : '' }}>Sertifikat</option>
-                            <option value="Notadinas" {{ $pelatihan->eviden == 'Notadinas' ? 'selected' : '' }}>Notadinas</option>
+                            <option value="Daftar hadir" {{ $pelatihan->eviden == 'Daftar hadir' ? 'selected' : '' }}>
+                                Daftar hadir</option>
+                            <option value="Sertifikat" {{ $pelatihan->eviden == 'Sertifikat' ? 'selected' : '' }}>
+                                Sertifikat</option>
+                            <option value="Notadinas" {{ $pelatihan->eviden == 'Notadinas' ? 'selected' : '' }}>Notadinas
+                            </option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan:</label>
-                        <input type="text" class="form-control" id="keterangan" name="keterangan" value="{{ $pelatihan->keterangan }}">
+                        <input type="text" class="form-control" id="keterangan" name="keterangan"
+                            value="{{ $pelatihan->keterangan }}">
                     </div>
                     <div class="form-group">
-                        <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#backModal">Kembali</a>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitModal">Edit</button>
+                        <label for="nama_atasan">Nama Atasan:</label>
+                        <input type="text" class="form-control" id="nama_atasan" name="nama_atasan"
+                            value="{{ $pelatihan->nama_atasan }}">
+                    </div>
+                    <div class="form-group">
+                        <a href="#" class="btn btn-secondary" data-toggle="modal"
+                            data-target="#backModal">Kembali</a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#submitModal">Edit</button>
                     </div>
                 </form>
             </div>
@@ -91,7 +112,8 @@
     <!-- /.container-fluid -->
 
     <!-- Submit Modal -->
-    <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
+    <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -112,7 +134,8 @@
     </div>
 
     <!-- Back Modal -->
-    <div class="modal fade" id="backModal" tabindex="-1" role="dialog" aria-labelledby="backModalLabel" aria-hidden="true">
+    <div class="modal fade" id="backModal" tabindex="-1" role="dialog" aria-labelledby="backModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

@@ -8,9 +8,17 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class PelatihanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pelatihans = Pelatihan::all();
+        $query = Pelatihan::query();
+
+        if ($request->has('filter') && $request->has('search')) {
+            $filter = $request->input('filter');
+            $search = $request->input('search');
+            $query->where($filter, 'LIKE', "%$search%");
+        }
+
+        $pelatihans = $query->paginate(10);
 
         return view('pelatihan.index', compact('pelatihans'));
     }
@@ -34,6 +42,7 @@ class PelatihanController extends Controller
             'jenis_pelatihan' => 'required|in:Internal,Publik',
             'eviden' => 'required|in:Daftar hadir,Sertifikat,Notadinas',
             'keterangan' => 'nullable',
+            'nama_atasan' => 'required',
         ]);
 
         Pelatihan::create($request->all());
@@ -65,6 +74,7 @@ class PelatihanController extends Controller
             'jenis_pelatihan' => 'required|in:Internal,Publik',
             'eviden' => 'required|in:Daftar hadir,Sertifikat,Notadinas',
             'keterangan' => 'nullable',
+            'nama_atasan' => 'required',
         ]);
 
         $pelatihan->update($request->all());
@@ -91,7 +101,7 @@ class PelatihanController extends Controller
         $csvFileName = 'data_pelatihan_' . $currentDateTime . '.csv';
         $csvFile = fopen('php://temp', 'w');    
         
-        $header = ['No', 'NIK', 'Nama', 'Nama Pelatihan', 'Kompetensi yang Ditingkatkan', 'Jumlah Hari', 'Penyelenggara', 'Tanggal Mulai', 'Tanggal Selesai', 'Jenis Pelatihan', 'Eviden', 'Keterangan'];
+        $header = ['No', 'NIK', 'Nama', 'Nama Pelatihan', 'Kompetensi yang Ditingkatkan', 'Jumlah Hari', 'Penyelenggara', 'Tanggal Mulai', 'Tanggal Selesai', 'Jenis Pelatihan', 'Eviden', 'Keterangan','Atasan Nama'];
         fputcsv($csvFile, $header, ';');
     
         $counter = 1;
@@ -109,6 +119,7 @@ class PelatihanController extends Controller
                 $training->jenis_pelatihan,
                 $training->eviden,
                 $training->keterangan,
+                $training->nama_atasan
             ];
             fputcsv($csvFile, $rowData, ';');
         }

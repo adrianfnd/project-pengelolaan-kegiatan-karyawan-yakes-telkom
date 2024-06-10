@@ -14,7 +14,7 @@
             </div>
             <div class="card-body">
                 @if (session('success'))
-                    <div class="alert alert-success" >
+                    <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
                 @endif
@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <label for="nik">NIK:</label>
                         <input type="number" class="form-control" id="nik" name="nik" maxlength="16">
-                    </div>                    
+                    </div>
                     <div class="form-group">
                         <label for="nama">Nama:</label>
                         <input type="text" class="form-control" id="nama" name="nama">
@@ -41,7 +41,8 @@
                     </div>
                     <div class="form-group">
                         <label for="kompetensi_yang_ditingkatkan">Kompetensi Yang Ditingkatkan:</label>
-                        <input type="text" class="form-control" id="kompetensi_yang_ditingkatkan" name="kompetensi_yang_ditingkatkan">
+                        <input type="text" class="form-control" id="kompetensi_yang_ditingkatkan"
+                            name="kompetensi_yang_ditingkatkan">
                     </div>
                     <div class="form-group">
                         <label for="jumlah_hari">Jumlah Hari:</label>
@@ -81,9 +82,15 @@
                         <input type="text" class="form-control" id="keterangan" name="keterangan">
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#backModal">Kembali</button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitModal">Simpan</button>
-                    </div>                    
+                        <label for="nama_atasan">Nama Atasan:</label>
+                        <input type="text" class="form-control" id="nama_atasan" name="nama_atasan">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary" data-toggle="modal"
+                            data-target="#backModal">Kembali</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#submitModal">Simpan</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -92,7 +99,8 @@
     <!-- /.container-fluid -->
 
     <!-- Submit Modal -->
-    <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
+    <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -113,7 +121,8 @@
     </div>
 
     <!-- Back Modal -->
-    <div class="modal fade" id="backModal" tabindex="-1" role="dialog" aria-labelledby="backModalLabel" aria-hidden="true">
+    <div class="modal fade" id="backModal" tabindex="-1" role="dialog" aria-labelledby="backModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
