@@ -21,53 +21,64 @@
             </div>
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-3">
-                    <div class="mr-3">
-                        <form method="GET" action="{{ route('pelatihan.index') }}" class="mb-4">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <input type="text" name="search" class="form-control" placeholder="Search"
-                                        value="{{ $search }}">
-                                </div>
-                                <div class="col-md-3">
-                                    <select name="filter" class="form-control">
-                                        <option value="" disabled selected>Pilih Filter</option>
-                                        <option value="nik" {{ $filter == 'nik' ? 'selected' : '' }}>NIK</option>
-                                        <option value="nama" {{ $filter == 'nama' ? 'selected' : '' }}>Nama</option>
-                                        <option value="nama_pelatihan" {{ $filter == 'nama_pelatihan' ? 'selected' : '' }}>
-                                            Nama Pelatihan</option>
-                                        <option value="kompetensi_yang_ditingkatkan"
-                                            {{ $filter == 'kompetensi_yang_ditingkatkan' ? 'selected' : '' }}>Kompetensi
-                                            Yang Ditingkatkan</option>
-                                        <option value="jumlah_hari" {{ $filter == 'jumlah_hari' ? 'selected' : '' }}>Jumlah
-                                            Hari</option>
-                                        <option value="penyelenggara" {{ $filter == 'penyelenggara' ? 'selected' : '' }}>
-                                            Penyelenggara</option>
-                                        <option value="tgl_mulai" {{ $filter == 'tgl_mulai' ? 'selected' : '' }}>Tanggal
-                                            Mulai</option>
-                                        <option value="tgl_selesai" {{ $filter == 'tgl_selesai' ? 'selected' : '' }}>Tanggal
-                                            Selesai</option>
-                                        <option value="jenis_pelatihan"
-                                            {{ $filter == 'jenis_pelatihan' ? 'selected' : '' }}>Jenis Pelatihan</option>
-                                        <option value="eviden" {{ $filter == 'eviden' ? 'selected' : '' }}>Eviden</option>
-                                        <option value="keterangan" {{ $filter == 'keterangan' ? 'selected' : '' }}>
-                                            Keterangan</option>
-                                        <option value="nama_atasan" {{ $filter == 'nama_atasan' ? 'selected' : '' }}>Nama
-                                            Atasan</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <button type="submit" class="btn btn-primary">Search</button>
-                                    <button type="button" onclick="resetForm()" class="btn btn-secondary">Reset</button>
-                                </div>
+                    <div class="mb-3">
+                        <form method="GET" action="{{ route('pelatihan.index') }}" class="form-inline">
+                            <div class="form-group mr-2 mb-2">
+                                <input type="text" name="search" class="form-control" placeholder="Search"
+                                    value="{{ $search }}">
+                            </div>
+                            <div class="form-group mr-2 mb-2">
+                                <select name="filter" class="form-control">
+                                    <option value="" disabled selected>Pilih Filter</option>
+                                    <option value="nik" {{ $filter == 'nik' ? 'selected' : '' }}>NIK</option>
+                                    <option value="nama" {{ $filter == 'nama' ? 'selected' : '' }}>Nama</option>
+                                    <option value="nama_pelatihan" {{ $filter == 'nama_pelatihan' ? 'selected' : '' }}>
+                                        Nama Pelatihan
+                                    </option>
+                                    <option value="kompetensi_yang_ditingkatkan"
+                                        {{ $filter == 'kompetensi_yang_ditingkatkan' ? 'selected' : '' }}>Kompetensi
+                                        Yang Ditingkatkan
+                                    </option>
+                                    <option value="jumlah_hari" {{ $filter == 'jumlah_hari' ? 'selected' : '' }}>Jumlah
+                                        Hari
+                                    </option>
+                                    <option value="penyelenggara" {{ $filter == 'penyelenggara' ? 'selected' : '' }}>
+                                        Penyelenggara
+                                    </option>
+                                    <option value="tgl_mulai" {{ $filter == 'tgl_mulai' ? 'selected' : '' }}>Tanggal
+                                        Mulai
+                                    </option>
+                                    <option value="tgl_selesai" {{ $filter == 'tgl_selesai' ? 'selected' : '' }}>Tanggal
+                                        Selesai
+                                    </option>
+                                    <option value="jenis_pelatihan" {{ $filter == 'jenis_pelatihan' ? 'selected' : '' }}>
+                                        Jenis
+                                        Pelatihan
+                                    </option>
+                                    <option value="eviden" {{ $filter == 'eviden' ? 'selected' : '' }}>Eviden</option>
+                                    <option value="keterangan" {{ $filter == 'keterangan' ? 'selected' : '' }}>
+                                        Keterangan
+                                    </option>
+                                    <option value="nama_atasan" {{ $filter == 'nama_atasan' ? 'selected' : '' }}>Nama
+                                        Atasan
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group mr-2 mb-2">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                            <div class="form-group mb-2">
+                                <button type="button" onclick="resetForm()" class="btn btn-secondary">Reset</button>
                             </div>
                         </form>
                     </div>
 
-                    <div class="mr-3">
-                        <a href="{{ route('pelatihan.create') }}" class="btn btn-success mr-2">Tambah Pelatihan</a>
+                    <div class="mb-3">
+                        <a href="{{ route('pelatihan.create') }}" class="btn btn-success mb-2">Tambah Pelatihan</a>
                         @if ($roles == 1)
-                            <button type="button" class="btn btn-success" data-toggle="modal"
-                                data-target="#exportExcelModal">Export Excel</button>
+                            <button type="button" class="btn btn-success mb-2" data-toggle="modal"
+                                data-target="#exportExcelModal">Export Excel
+                            </button>
                         @endif
                     </div>
                 </div>
