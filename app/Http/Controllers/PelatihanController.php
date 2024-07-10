@@ -33,7 +33,7 @@ class PelatihanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nik' => 'required|numeric|unique:pelatihan',
+            'nik' => 'required|numeric',
             'nama' => 'required',
             'nama_pelatihan' => 'required',
             'kompetensi_yang_ditingkatkan' => 'required',
@@ -65,7 +65,7 @@ class PelatihanController extends Controller
     public function update(Request $request, Pelatihan $pelatihan)
     {
         $request->validate([
-            'nik' => 'required|numeric|unique:pelatihan,nik,' . $pelatihan->id,
+            'nik' => 'required|numeric',
             'nama' => 'required',
             'nama_pelatihan' => 'required',
             'kompetensi_yang_ditingkatkan' => 'required',
